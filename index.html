@@ -29,7 +29,6 @@
     </style>
   </head>
   <body class='bg-dark pt-2'>
-
     <div class='container text-light'>
 
       <!-- header -->
@@ -39,17 +38,17 @@
 
       <!-- input -->
       <div style="background-color:#212529;" class="nes-field is-inline">
-        <label for="dark_field" style="color:#fff;">Username</label>
-        <input type="text" id="dark_field" class="nes-input is-dark" placeholder="Enter ZONIC Username">
-        <button type="button" class="nes-btn is-primary">Submit</button>
+        <label for="username" style="color:#fff;">Username</label>
+        <input type="text" id="username" class="nes-input is-dark" placeholder="Enter ZONIC Username">
+        <button type="button" class="nes-btn is-primary" id="btn_submit">Submit</button>
       </div>
 
       <!-- output -->
       <br>
       <div style="background-color:#212529;" class="nes-field is-inline">
-        <label for="dark_field" style="color:#fff;">Wallet Address</label>
-        <input type="text" id="dark_field" class="nes-input is-dark" placeholder="Wallet Address" readonly>
-        <button type="button" class="nes-btn is-warning">Copy</button>
+        <label for="wallet" style="color:#fff;">Wallet Address</label>
+        <input type="text" id="wallet" class="nes-input is-dark" placeholder="Wallet Address" readonly>
+        <button type="button" class="nes-btn is-warning" id="btn_copy">Copy</button>
       </div>
 
       <!-- description -->
@@ -59,6 +58,9 @@
 
     </div>
 
+    <!-- bottom script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="./app.js"></script>
   </body>
 </html>
