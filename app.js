@@ -51,7 +51,8 @@ function fetch_by_proxy(username, callback) {
 }
 function fetch_by_api_v0(username, callback) {
   let api = 'https://api.zonic.app/v0/wallet/search?keyword=';
-  $.get(api + username, resp => {
+  proxy(api + username, out => {
+    let resp = JSON.parse(out);
     if (resp.success) {
       let found = resp.search_results.find(r => r.username === username);
       if (found)
