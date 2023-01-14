@@ -29,7 +29,7 @@ function copyToClipboard(text) {
     }
 }
 
-// proxy guy
+// api
 function proxy(url, callback){
     $.ajax({
         url: './proxy.php', // this file in same domain
@@ -39,6 +39,15 @@ function proxy(url, callback){
           callback(resp);
         }
     })
+}
+function fetch_by_proxy(username, callback) {
+  proxy('https://zonic.app/profile/' + username, resp => {
+    let found = resp.match(/0x.{40}/);
+    if (found === null)
+      callback(null);
+    else
+      callback(found[0]);
+  });
 }
 
 // bind submit button
@@ -59,20 +68,16 @@ $('#btn_submit').click(_ => {
   $('#wallet').val('mapping...');
 
   // resolve wallet from username
-  proxy('https://zonic.app/profile/' + username, resp => {
+  fetch_by_proxy(username, wallet => {
     // load done
     $btn.removeClass('is-disabled');
     $btn.addClass('is-primary');
     processing = false;
-    // find wallet from response
-    let found = resp.match(/0x.{40}/);
-    if (found === null) {
-      $('#wallet').val('username not found');
-    }
-    else {
-      let wallet = found[0];
+    // show wallet
+    if (wallet)
       $('#wallet').val(wallet);
-    }
+    else
+      $('#wallet').val('username not found');
   });
 });
 
