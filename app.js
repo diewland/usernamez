@@ -49,6 +49,23 @@ function fetch_by_proxy(username, callback) {
       callback(found[0]);
   });
 }
+function fetch_by_api_v0(username, callback) {
+  let api = 'https://api.zonic.app/v0/wallet/search?keyword=';
+  $.get(api + username, resp => {
+    if (resp.success) {
+      let found = resp.search_results.find(r => r.username === username);
+      if (found)
+        callback(found.wallet_address);
+      else
+        callback(null);
+    }
+    else {
+      callback(null);
+    }
+  });
+}
+//let resolve_wallet = fetch_by_proxy;
+let resolve_wallet = fetch_by_api_v0;
 
 // bind submit button
 let processing = false;
@@ -68,7 +85,7 @@ $('#btn_submit').click(_ => {
   $('#wallet').val('mapping...');
 
   // resolve wallet from username
-  fetch_by_proxy(username, wallet => {
+  resolve_wallet(username, wallet => {
     // load done
     $btn.removeClass('is-disabled');
     $btn.addClass('is-primary');
